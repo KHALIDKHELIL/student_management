@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Models\batch;
+use App\Models\Batch;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -13,16 +13,16 @@ class batchController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():view
+    public function index()
     {
-        $batches = batch::all();
-        return view ('batches.index')->with('batches', $batches);
+        $batches = Batch::all();
+        return view('batches.index')->with('batches', $batches);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create():view
+    public function create(): view
     {
         return view('batches.create');
     }
@@ -35,13 +35,12 @@ class batchController extends Controller
         $input = $request->all();
         Batch::create($input);
         return redirect('batches')->with('flash_message', 'Batch Added!');
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id):view
+    public function show(string $id): view
     {
         $batches = Batch::find($id);
         return view('batches.show')->with('batches', $batches);
@@ -50,7 +49,7 @@ class batchController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id):view
+    public function edit(string $id): view
     {
         $batche = Batch::find($id);
         return view('batches.edit')->with('batches', $batche);
@@ -65,7 +64,6 @@ class batchController extends Controller
         $input = $request->all();
         $batche->update($input);
         return redirect('batches')->with('flash_message', 'batch Updated!');
-
     }
 
     /**
@@ -75,6 +73,5 @@ class batchController extends Controller
     {
         Batch::destroy($id);
         return redirect('batches')->with('flash_message', 'Batch deleted!');
-
     }
 }
