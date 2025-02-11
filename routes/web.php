@@ -19,3 +19,6 @@ Route::resource('/courses', courseController::class);
 Route::resource('/batches', batchController::class);
 Route::resource('/enrollments', EnrollmentController::class);
 Route::resource('/payments', PaymentController::class);
+
+Route::get('report/report1/{pid}',[ReportController::class,'report1']);
+
